@@ -2,8 +2,8 @@ import UserModel from '../dataBase/models/user.js';
 import HandlePassword from '../utils/handlePassword.js';
 import Token from '../utils/handleJWT.js'
 
-// const handlePassword = new HandlePassword();
-// const token = new Token();
+const handlePassword = new HandlePassword();
+const token = new Token();
 
 class User {
 

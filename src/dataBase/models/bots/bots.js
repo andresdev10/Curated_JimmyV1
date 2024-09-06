@@ -15,7 +15,7 @@ const bots = mongoose.Schema({
         type: Number,
         default: 2
     }
-})
+},{ timestamps: true });
 
 const Bots = mongoose.model('Bots', bots)
 

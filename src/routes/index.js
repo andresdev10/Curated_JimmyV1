@@ -1,7 +1,13 @@
 import express from 'express';
 import User from '../controllers/user.controllers.js';
 
+import taskTwitter from '../jobs/twitter.jobs.js';
+import Url from '../controllers/urls.controllers.js';
+import Scraping from '../controllers/scraping.controllers.js';
+
 const user = new User();
+const url = new Url();
+const scraping = new Scraping();
 
 const router = express.Router();
 
@@ -14,5 +20,17 @@ router.get('/', (req, res) => {
 // USERS
 router.post('/createUser', user.createUser.bind(user));
 router.post('/login', user.loginUser.bind(user));
+
+// ruta prueba bots
+
+router.get('/prueba', taskTwitter)
+
+// rutas para crear urls
+
+router.post('/createUrl', url.createUrl)
+
+// Rutas para Scraper
+
+router.get('/sendData', scraping.scraping)
 
 export default router;
