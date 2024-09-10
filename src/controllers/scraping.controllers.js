@@ -11,7 +11,7 @@ class Scraping {
     async scraping(req, res){
         try {
             const  { platform, category } = req.query;
-            const urls = await Urls.find({ platform: platform, category: category})
+            const urls = await Urls.find({ platform: platform.toLowerCase(), category: category})
             let data = []
             for ( const url of urls){
                const resp = await taskTwitter(username,password,url.url)

@@ -21,6 +21,17 @@ class Url{
         }
 
     }
+
+    async sendCategory(req, res){
+        try {
+            const { platform } = req.query
+           const catagory = await Urls.distinct('category', { platform: platform.toLowerCase() })
+           res.status(200).send(catagory)
+        } catch (error) {
+            console.log("error", error);
+            res.status(404).send({ message: "Error al buscar las categorias", error: error });
+        }
+    }
 } 
 
 export default Url;
