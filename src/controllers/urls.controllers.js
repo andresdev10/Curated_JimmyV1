@@ -4,7 +4,7 @@ class Url{
     async createUrl(req, res){
         try {
             const { urls } = req.body;
-            if (urls.lengt == 0) return res.status(404).send({ message: 'No hay datos (url) para almacenar' });
+            if (urls.length == 0) return res.status(404).send({ message: 'No hay datos (url) para almacenar' });
             let urlSave;
             for (const url of urls){
                 urlSave =  new Urls({
@@ -25,7 +25,7 @@ class Url{
     async sendCategory(req, res){
         try {
             const { platform } = req.query
-           const catagory = await Urls.distinct('category', { platform: platform.toLowerCase() })
+           const catagory = await Urls.distinct('category', { platform: new RegExp(`^${platform}$`, 'i') })
            res.status(200).send(catagory)
         } catch (error) {
             console.log("error", error);
