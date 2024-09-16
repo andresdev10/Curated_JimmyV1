@@ -7,7 +7,7 @@ import router from './routes/index.js';
 import Bot from './utils/bots.js';
 
 const bot = new Bot();
-const bots = ["IG", "Twitter", "Pinterest", "Tumblr"];
+const bots = ["IG", "Twitter", "Pinterest", "Tumblr", "Instagram"];
 
 const app = express();
 dotenv.config();

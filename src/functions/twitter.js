@@ -117,12 +117,12 @@ const getData = async (username,password,url) => {
 
             const divPostImg = await div.$('.css-175oi2r.r-9aw3ui.r-1s2bzr4')
             let imgPostUrl;
-            let imgValue;
+            let imgValue = [];
             if(divPostImg){
                 imgPostUrl = await divPostImg.$('img');
                 if (imgPostUrl) {
                     const imgHandle = await imgPostUrl.getProperty('src');
-                    imgValue = await imgHandle.jsonValue(); // Obtiene el valor real del src
+                    imgValue.push(await imgHandle.jsonValue()); // Obtiene el valor real del src
                 }         
             } 
             const divPosts = await div.$('.css-146c3p1.r-8akbws.r-krxsd3.r-dnmrzs.r-1udh08x.r-bcqeeo.r-1ttztb7.r-qvutc0.r-37j5jr.r-a023e6.r-rjixqe.r-16dba41.r-bnwqim');
@@ -143,7 +143,7 @@ const getData = async (username,password,url) => {
                     photo: `https://www.x.com${hrefValue}`,
                     followers: spanFollowersValue,
                     linkFollowers: tagAFollowersHref,
-                    LinkPhotPosts: imgValue || "",
+                    LinkPhotPosts: imgValue || [],
                 });
             
         }  
