@@ -2,11 +2,11 @@ import ScrapedUser from '../dataBase/models/scrapedUser.js';
 import Posts from '../dataBase/models/posts.js';
 import Links from '../dataBase/models/links.js';
 import Photos from '../dataBase/models/photos.js';
-import tumblrScraping from '../functions/tumblr.js';
+import instagramScraping from '../functions/instagram.js';
 
-const taskTumblr = async (usernameTumblr, passwordTumblr, url) => {
+const taskInstagram = async (usernameInstagram, passwordInstagram, url) => {
     try {
-        const data = await tumblrScraping(usernameTumblr, passwordTumblr, url);
+        const data = await instagramScraping(usernameInstagram, passwordInstagram, url);
         const resultData = [];
 
         for (const item of data) {
@@ -74,4 +74,4 @@ const taskTumblr = async (usernameTumblr, passwordTumblr, url) => {
     }
 }
 
-export default taskTumblr;
+export default taskInstagram;

@@ -5,6 +5,7 @@ const links = new Schema({
     time: {type: String },
     urlPost: {type: String },
     urlPhoto: [{type: String }],
+    urlVideo: [{type: String}],
     user: {type: Schema.Types.ObjectId, ref: 'ScrapedUser'},
 },{ timestamps: true });
 

@@ -16,7 +16,7 @@ const getData = async (usernameTumblr,passwordTumblr,url) => {
         console.log(`Se ingresara a la url: ${url}`);
         await page.goto(url);
         // await page.setJavaScriptEnabled(false)
-        // await page.goto('https://www.tumblr.com/music')
+        // await page.goto('https://www.tumblr.com/materterrae')
         const postsArray = []
         await page.waitForTimeout(5000);
         const divPrincipal = page.locator('div.xw7_H.M0eFR.qQC1b')
@@ -115,6 +115,7 @@ const getData = async (usernameTumblr,passwordTumblr,url) => {
         for (const element of divPosts) {
         let imgValue = [];
         let combinedPValue = '';
+        let video = [];
 
             const head = await element.$('.BjErQ.PpzOx')
 
@@ -163,6 +164,19 @@ const getData = async (usernameTumblr,passwordTumblr,url) => {
 
             
             const div = await spanPosts.$('div.GzjsW')
+
+            const divVideo = await div.$('div.LbyNj')
+            if(divVideo){
+                const subDivVideo = await divVideo.$$('div.gDuxW')
+                if(subDivVideo.length > 0) {
+                    for(const sub of subDivVideo){
+                        const videoTag = await sub.$('video')
+                        const source = await videoTag.$('source')
+                        const videoValue = await source.getAttribute('src')
+                        video.push(videoValue);
+                    }
+                }
+            }
             
             await page.waitForTimeout(5000)
             const divImg = await div.$$('div.CQmeg')
@@ -231,7 +245,8 @@ const getData = async (usernameTumblr,passwordTumblr,url) => {
                 photo: imgUrl,
                 followers: "",
                 linkFollowers: "",
-                LinkPhotPosts:  imgValue
+                LinkPhotPosts:  imgValue,
+                linkVideo: video
             });
 
         }
